@@ -1,0 +1,31 @@
+I need you to run an automated SFDC field dependency analysis using the scripts in my Downloads folder.
+
+FIELDS TO ANALYZE: subscription_model_type,is_price_ramp,cpq_opportunity_name,cpq_quote_business_type,renewal_type
+
+STEP 1: Check if analysis scripts are available
+ls -la /root/Downloads/sfdc_field_analyzer/ || ls -la ~/Downloads/sfdc_field_analyzer/
+
+STEP 2: Run the field analyzer script
+python3 /root/Downloads/sfdc_field_analyzer/simple_field_analyzer.py --fields="subscription_model_type,is_price_ramp,cpq_opportunity_name,cpq_quote_business_type,renewal_type" --prompt-only
+
+STEP 3: EXECUTE THE ANALYSIS DIRECTLY (don't just show the prompt)
+Instead of showing me the generated prompt, please execute the actual field analysis using your tools:
+
+- Use codebase_search to analyze how each field is used across staging/foundational/functional layers
+- Use grep for pattern matching to find field references
+- Use read_file to examine specific models that use these fields
+- Follow the systematic methodology: staging → foundational → functional → criticality assessment
+
+STEP 4: For each field, provide:
+- Usage Evidence (specific models found)
+- Criticality (🔴 CRITICAL / 🟡 HIGH / 🟢 MEDIUM / ⚫ UNUSED)
+- Recommendation (KEEP current sync / Alternative sync / EOL recommended)
+- Business Justification
+- Risk Assessment
+
+STEP 5: Generate executive summary table:
+| Field | Criticality | Recommendation | Models Affected | Risk |
+
+Focus on: price ramp logic, revenue recognition, SFA analytics, MBA reporting, digital-led renewal logic.
+
+This analysis supports Orchestration Services decisions on SFDC→Zuora field sync methods. Execute the full analysis and provide actionable recommendations.
