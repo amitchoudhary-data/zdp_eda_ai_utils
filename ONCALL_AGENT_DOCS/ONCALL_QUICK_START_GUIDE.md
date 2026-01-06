@@ -1,7 +1,5 @@
 # 🚨 ZDP On-Call Assistant - Quick Start Guide
 
----
-
 ## 🤖 ON-CALL SUPPORT AGENT (Recommended)
 
 **How to Activate:**
