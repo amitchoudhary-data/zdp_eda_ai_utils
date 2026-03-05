@@ -1,7 +1,7 @@
 {
   "analysis_metadata": {
-    "date": "2025-09-25T17:47:01.152372",
-    "fields_count": 3,
+    "date": "2025-10-01T22:21:47.121805",
+    "fields_count": 5,
     "analyst": "Claude AI",
     "request_type": "Orchestration Services"
   },
@@ -27,6 +27,26 @@
       "business_justification": ""
     },
     "cpq_opportunity_name": {
+      "staging_usage": [],
+      "foundational_usage": [],
+      "functional_usage": [],
+      "criticality": "",
+      "recommendation": "",
+      "rationale": "",
+      "downstream_impact": "",
+      "business_justification": ""
+    },
+    "cpq_quote_business_type": {
+      "staging_usage": [],
+      "foundational_usage": [],
+      "functional_usage": [],
+      "criticality": "",
+      "recommendation": "",
+      "rationale": "",
+      "downstream_impact": "",
+      "business_justification": ""
+    },
+    "renewal_type": {
       "staging_usage": [],
       "foundational_usage": [],
       "functional_usage": [],

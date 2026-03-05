@@ -1,0 +1,16 @@
+# Atlassian API Configuration Template
+# Copy this file to .env and fill in your credentials
+# NEVER commit .env to git!
+
+# Your Atlassian account email
+ATLASSIAN_EMAIL=your.email@company.com
+
+# API Token from https://id.atlassian.com/manage-profile/security/api-tokens
+ATLASSIAN_API_TOKEN=your_api_token_here
+
+# Your Atlassian domain (without https://)
+ATLASSIAN_DOMAIN=yourcompany.atlassian.net
+
+# Optional: Default Jira project key
+JIRA_PROJECT_KEY=PROJ
+

@@ -4,16 +4,11 @@ Simple SFDC Field Analysis Helper
 Generates structured analysis requests for Claude
 
 Usage:
-    python3 simple_field_analyzer.py --fields="field1,field2,field3"
-    python3 simple_field_analyzer.py --fields="field1,field2,field3" --claude-cli
-    python3 simple_field_analyzer.py --fields="field1,field2,field3" --claude-cli --model="claude-sonnet-4-20250514"
+    python simple_field_analyzer.py --fields="field1,field2,field3"
 """
 
 import argparse
 import json
-import subprocess
-import sys
-import shutil
 from datetime import datetime
 from typing import List
 
@@ -82,52 +77,6 @@ Please use your available tools (codebase_search, grep, read_file) to perform co
 
     return prompt
 
-def check_claude_cli() -> bool:
-    """Check if Claude CLI is installed"""
-    return shutil.which('claude') is not None
-
-def run_claude_cli(prompt: str, model: str = None) -> bool:
-    """Send prompt to Claude CLI and display results"""
-    
-    if not check_claude_cli():
-        print("❌ Claude CLI not found. Please install it first:")
-        print("   npm install -g @anthropic-ai/claude-cli")
-        print("   or visit: https://github.com/anthropics/claude-cli")
-        return False
-    
-    try:
-        # Build Claude CLI command
-        cmd = ['claude']
-        
-        if model:
-            cmd.extend(['--model', model])
-        
-        # Add the prompt
-        cmd.append(prompt)
-        
-        print(f"\n🤖 Sending analysis request to Claude CLI...")
-        print(f"   Model: {model or 'default'}")
-        print("="*60)
-        
-        # Run Claude CLI
-        result = subprocess.run(
-            cmd,
-            capture_output=False,  # Show output directly
-            text=True
-        )
-        
-        if result.returncode == 0:
-            print("\n" + "="*60)
-            print("✅ Analysis completed successfully!")
-            return True
-        else:
-            print(f"\n❌ Claude CLI exited with code {result.returncode}")
-            return False
-            
-    except Exception as e:
-        print(f"❌ Error running Claude CLI: {str(e)}")
-        return False
-
 def save_analysis_template(field_names: List[str], output_file: str):
     """Save analysis template for manual completion"""
 
@@ -166,10 +115,6 @@ def main():
                        help='Output template filename')
     parser.add_argument('--prompt-only', action='store_true',
                        help='Only generate Claude prompt (no template file)')
-    parser.add_argument('--claude-cli', action='store_true',
-                       help='Send prompt directly to Claude CLI')
-    parser.add_argument('--model', type=str,
-                       help='Claude model to use (e.g., claude-sonnet-4-20250514)')
 
     args = parser.parse_args()
 
@@ -183,22 +128,6 @@ def main():
     # Generate Claude prompt
     prompt = generate_claude_analysis_prompt(field_names)
 
-    # If Claude CLI requested, send directly
-    if args.claude_cli:
-        success = run_claude_cli(prompt, args.model)
-        if not success:
-            print("\n⚠️  Falling back to manual mode...")
-            print("\n🤖 CLAUDE ANALYSIS PROMPT:")
-            print("="*60)
-            print(prompt)
-            print("="*60)
-        
-        if not args.prompt_only:
-            save_analysis_template(field_names, args.output)
-        
-        return
-
-    # Manual mode - display prompt
     print("🤖 CLAUDE ANALYSIS PROMPT:")
     print("="*60)
     print(prompt)
@@ -216,8 +145,7 @@ def main():
 3. **Review the results** and validate with business stakeholders
 4. **Share with Orchestration Services** team
 
-🚀 Tip: Use --claude-cli flag to send directly to Claude CLI!
-   Example: python3 simple_field_analyzer.py --fields="field1,field2" --claude-cli
+🚀 This replaces the complex multi-repo system with a simple, working approach!
 """)
 
 if __name__ == "__main__":
