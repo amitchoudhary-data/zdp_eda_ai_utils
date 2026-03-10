@@ -51,19 +51,6 @@ python3 atlassian_readonly.py --get-page "123456789"
 python3 atlassian_readonly.py --search-confluence "title ~ 'SFDC' AND space = TECH"
 ```
 
-### Field Analysis with Claude CLI
-
-```bash
-# Run field analysis
-python3 simple_field_analyzer.py \
-  --fields="subscription_model_type,is_price_ramp" \
-  --claude-cli
-
-# Generate prompt only (no Claude CLI)
-python3 simple_field_analyzer.py \
-  --fields="subscription_model_type,is_price_ramp"
-```
-
 ## Python Code Examples
 
 ### Read Jira Issues
@@ -108,11 +95,13 @@ for result in results:
 |------|---------|
 | `atlassian_readonly.py` | 🔒 Read-only API client |
 | `atlassian_config.py` | ⚠️ Full-access API client |
-| `simple_field_analyzer.py` | Field analysis tool |
+| `confluence_space_exporter.py` | Confluence space export tool |
+| `export_platform_data_architecture.py` | Architecture doc export |
 | `.env` | **Your credentials (NEVER commit!)** |
 | `env_template.txt` | Template for `.env` |
 | `README_READONLY.md` | Full read-only documentation |
 | `ATLASSIAN_SETUP.md` | Full setup guide |
+| `CONFLUENCE_EXPORT_GUIDE.md` | Confluence export guide |
 
 ## Security Checklist
 
@@ -194,7 +183,7 @@ pip3 install --break-system-packages requests python-dotenv
 
 **Fix:**
 ```bash
-cd "/Users/amit.choudhary/Downloads/Repos EDA/zdp_eda_ai_utils/Analysis"
+cd "/Users/amit.choudhary/Downloads/Repos EDA/zdp_eda_ai_utils/Atlassian"
 cp env_template.txt .env
 # Edit .env with your credentials
 ```

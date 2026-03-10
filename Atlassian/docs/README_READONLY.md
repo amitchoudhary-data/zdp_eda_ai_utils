@@ -44,7 +44,7 @@ pip3 install --break-system-packages requests python-dotenv
 
 Create `.env` file:
 ```bash
-cd "/Users/amit.choudhary/Downloads/Repos EDA/zdp_eda_ai_utils/Analysis"
+cd "/Users/amit.choudhary/Downloads/Repos EDA/zdp_eda_ai_utils/Atlassian"
 cp env_template.txt .env
 nano .env
 ```
